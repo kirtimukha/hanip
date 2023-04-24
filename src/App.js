@@ -93,7 +93,7 @@ const compare = (a,b) => {
   //3. 작다
   if (a>b){return 1}
   if (a<b){return -1}
-  if (a=b){return 0}
+  if (a===b){return 0}
 }
 nums.sort(compare)
 console.log(nums, " : compare")
