@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useRef} from "react";
 
 const DiaryEditor = () => {
 /*  const handleTitle = (text) => {
@@ -18,23 +18,35 @@ const DiaryEditor = () => {
       emotion: "",
     }
   );
-
+  const authorInput = useRef();
+  const contentInput = useRef();
   const handleSubmit = () => {
-    console.log(state)
+    if(state.author.length < 1){
+      alert("1글자 이상 입력해주세요.");
+      authorInput.current.focus();
+      return;
+    }
+    if(state.content.length < 5){
+      alert("내용을 5글자 이상 입력해주세요.");
+      contentInput.current.focus();
+      return;
+    }
     alert("저장");
   }
   return (
+
     <div className="DiaryEditor">
       <h2>오늘의 일기</h2>
       <div>
-        <input type="text" name="author" value={state.author}
-               onChange= {handleChangeState}
+        <input type="text" name="author" value={state.author} ref={authorInput}
+           onChange= {handleChangeState}
 
         />
       </div>
       <div>
         <textarea name="content" id="" cols="30" rows="10" value={state.content}
-                  onChange= {handleChangeState}
+                  ref={contentInput}
+          onChange= {handleChangeState}
         >
 
         </textarea>
